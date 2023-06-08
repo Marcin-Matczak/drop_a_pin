@@ -1,0 +1,36 @@
+/* Buttons */
+
+.btn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  font-size: 1.9rem;
+  padding: 2rem 4rem;
+
+  &:hover {
+    scale: 1.05;
+    font-weight: 700;
+  }
+}
+
+/* Utils class */
+
+.highlight {
+  position: relative;
+  font-weight: 600;
+
+  &::after {
+    background-image: var(--gradient);
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    opacity: 0.9;
+    transform: scale(1.08, 0.9) skewX(20deg);
+    width: 100%;
+    z-index: -1;
+  }
+}

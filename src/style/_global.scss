@@ -1,0 +1,30 @@
+/* Variables */
+
+:root {
+  --color-text-dark: #3d3d3d;
+  --color-bg-light:#e7e7e7;
+  --color-primary: #ff4d4d;
+  --color-secondary: #ff3838;
+  --color-tertiary: #ff585f;
+  --gradient: linear-gradient(to top left, #ff9f1a, #ff3838);
+  --gradient-secondary: linear-gradient(to top left, #7158e2, #7d5fff);
+}
+
+/* Global */
+
+* {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 60%;
+}
+
+body {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-dark);
+  font-family: 'Poppins', sans-serif;
+}
