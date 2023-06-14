@@ -1,0 +1,48 @@
+/* Features */
+
+.features {
+  background-color: #fff;
+  max-width: 100rem;
+  margin: 12rem auto 0 auto;
+
+  &__header {
+    font-size: 2.25rem;
+    font-weight: 500;
+    align-self: center;
+  }
+
+  &__tab-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__tab {
+    margin-right: 2.5rem;
+    transform: translateY(-50%);
+  }
+
+  &__content {
+    display: none;
+  font-size: 1.7rem;
+  padding: 2.5rem 7rem 6.5rem 7rem;
+
+    &--active {
+      display: grid;
+      grid-template-columns: 9rem 1fr;
+      column-gap: 3rem;
+      row-gap: 0.5rem;
+    }
+
+    & p {
+      grid-column: 2;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7rem;
+    width: 7rem;
+  }
+}
