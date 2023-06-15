@@ -1,0 +1,19 @@
+/* Slider */
+
+.slider {
+  height: 50rem;
+  max-width: 100rem;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+
+  &__slide {
+    width: 100%;
+
+    & > img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}
