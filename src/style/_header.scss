@@ -18,6 +18,10 @@
   width: 100%;
   max-width: 130rem;
 
+  &__logo {
+    fill: var(--color-text-dark);
+  }
+
   &__list {
     display: flex;
     align-items: center;
