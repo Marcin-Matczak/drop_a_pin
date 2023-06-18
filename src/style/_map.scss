@@ -1,0 +1,24 @@
+/* Drop a pin */
+
+.section--map {
+  display: flex;
+  height: 100vh;
+  padding: 1rem;
+}
+
+/* Drop a pin -- sidebar*/
+
+.sidebar {
+  background-color: var(--color-text-dark);
+  display: flex;
+  flex-basis: 50rem;
+  flex-direction: column;
+}
+
+/* Drop a pin -- map*/
+
+.map {
+  background-color: var(--color-bg-dark);
+  flex: 1;
+  height: 100%;
+}
