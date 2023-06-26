@@ -8,6 +8,8 @@ const sectionOne = document.querySelector('#section-1');
 const navigation = document.querySelector('.navigation');
 const navigationList = document.querySelector('.navigation__list');
 
+const sections = document.querySelectorAll('.section');
+
 const tabs = document.querySelectorAll('.btn--tab');
 const tabsContainer = document.querySelector('.features__tab-container');
 const tabsContent = document.querySelectorAll('.features__content');
@@ -77,3 +79,48 @@ const headerObserver = new IntersectionObserver(stickyNavigation, {
 });
 
 headerObserver.observe(header);
+
+/* Show sections */
+
+const showSection = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(showSection, {
+  root: null,
+  threshold: 0.2,
+});
+
+sections.forEach(function (section) {
+  section.classList.add('section--hidden');
+  sectionObserver.observe(section);
+});
+
+/* Show about`s descriptions */
+
+const aboutSection = document.querySelector('.about');
+const descriptions = document.querySelectorAll('.about__info p');
+const evenText = descriptions.item(1);
+
+const showAboutItems = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('show-left');
+  entry.target.classList.remove('show-right');
+  observer.unobserve(entry.target);
+};
+
+const aboutObserver = new IntersectionObserver(showAboutItems, {
+  root: null,
+  threshold: 0.7,
+});
+
+descriptions.forEach(function (description) {
+  aboutObserver.observe(description);
+  if (description === evenText) description.classList.add('show-right');
+  else description.classList.add('show-left');
+});

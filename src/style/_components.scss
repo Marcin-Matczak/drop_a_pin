@@ -27,7 +27,12 @@
     font-weight: 500;
     line-height: 1.3;
   }
-} 
+
+  &--hidden {
+    opacity: 0;
+    transform: translateY(8rem);
+  }
+}
 
 /* Buttons */
 

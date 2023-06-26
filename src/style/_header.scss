@@ -20,6 +20,7 @@
 
   &__logo {
     fill: var(--color-text-dark);
+    transition: all 0.3s;
   }
 
   &__list {
@@ -34,6 +35,7 @@
     font-weight: 400;
     text-decoration: none;
     display: block;
+    transition: all 0.3s;
   }
 
   &__item {
