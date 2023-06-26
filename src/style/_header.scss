@@ -15,8 +15,8 @@
   justify-content: space-between;
   align-items: center;
   height: 6rem;
-  width: 100%;
   max-width: 130rem;
+  width: 100%;
 
   &__logo {
     fill: var(--color-text-dark);
@@ -44,6 +44,14 @@
 
 .navigation__link:hover {
   color: #000;
+}
+
+.sticky {
+  background-color: rgba(255, 255, 255, 0.9);
+  min-width: 100%;
+  padding: 0 20rem;
+  position: fixed;
+  z-index: 100;
 }
 
 /* HEADER -- Welcome */

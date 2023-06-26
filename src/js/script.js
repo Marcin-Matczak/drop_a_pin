@@ -1,5 +1,7 @@
 /* Elements */
 
+const header = document.querySelector('.header');
+
 const buttonLearnMore = document.querySelector('.btn--learn-more');
 
 const sectionOne = document.querySelector('#section-1');
@@ -57,3 +59,21 @@ const menuLinksHover = function (e) {
 
 navigation.addEventListener('mouseover', menuLinksHover.bind(0.5));
 navigation.addEventListener('mouseout', menuLinksHover.bind(1));
+
+/* Sticky navigation */
+
+const navigationHeight = navigation.getBoundingClientRect().height;
+
+const stickyNavigation = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) navigation.classList.add('sticky');
+  else navigation.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNavigation, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navigationHeight}px`,
+});
+
+headerObserver.observe(header);
