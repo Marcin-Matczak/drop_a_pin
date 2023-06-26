@@ -6,9 +6,9 @@
   margin: 12rem auto 0 auto;
 
   &__header {
+    align-self: center;
     font-size: 2.25rem;
     font-weight: 500;
-    align-self: center;
   }
 
   &__tab-container {
@@ -16,20 +16,15 @@
     justify-content: center;
   }
 
-  &__tab {
-    margin-right: 2.5rem;
-    transform: translateY(-50%);
-  }
-
   &__content {
     display: none;
-  font-size: 1.7rem;
-  padding: 2.5rem 7rem 6.5rem 7rem;
+    font-size: 1.7rem;
+    padding: 2.5rem 7rem 6.5rem 7rem;
 
     &--active {
+      column-gap: 3rem;
       display: grid;
       grid-template-columns: 9rem 1fr;
-      column-gap: 3rem;
       row-gap: 0.5rem;
     }
 
@@ -39,10 +34,10 @@
   }
 
   &__icon {
-    display: flex;
     align-items: center;
-    justify-content: center;
+    display: flex;
     height: 7rem;
+    justify-content: center;
     width: 7rem;
   }
 }

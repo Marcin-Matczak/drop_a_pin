@@ -45,6 +45,30 @@
   }
 }
 
+.btn--tab {
+  background-color: var(--color-primary);
+  border-radius: 10rem;
+  color: var(--color-bg-light);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-family: inherit;
+  font-weight: 500;
+  min-width: 17rem;
+  padding: 1.3rem 6rem;
+  transition: all 0.3s;
+  margin-right: 2.5rem;
+  transform: translateY(-50%);
+
+  &:hover {
+    background-color: var(--color-secondary);
+  }
+
+  &-active {
+    transform: translateY(-80%);
+  }
+}
+
 /* Utils class */
 
 .highlight {

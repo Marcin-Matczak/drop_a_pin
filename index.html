@@ -152,11 +152,15 @@
         </header>
         <section class="features">
           <header class="features__tab-container">
-            <button class="btn features__tab">Instant Transfers</button>
-            <button class="btn features__tab">Instant Loans</button>
-            <button class="btn features__tab">Instant Closing</button>
+            <button class="btn btn--tab btn--tab-active" data-tab="1">
+              Where
+            </button>
+            <button class="btn btn--tab" data-tab="2">To</button>
+            <button class="btn btn--tab" data-tab="3">Go?</button>
           </header>
-          <article class="features__content features__content--active">
+          <article
+            class="features__content features__content--1 features__content--active"
+          >
             <div class="features__icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -179,7 +183,7 @@
             </p>
           </article>
 
-          <article class="features__content">
+          <article class="features__content features__content--2">
             <div class="features__icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +205,7 @@
               anim id est laborum.
             </p>
           </article>
-          <article class="features__content">
+          <article class="features__content features__content--3">
             <div class="features__icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
