@@ -3,6 +3,7 @@
 const buttonLearnMore = document.querySelector('.btn--learn-more');
 
 const sectionOne = document.querySelector('#section-1');
+const navigation = document.querySelector('.navigation');
 const navigationList = document.querySelector('.navigation__list');
 
 const tabs = document.querySelectorAll('.btn--tab');
@@ -37,3 +38,22 @@ tabsContainer.addEventListener('click', function (e) {
   );
   article.classList.add('features__content--active');
 });
+
+/* Menu animation */
+
+const menuLinksHover = function (e) {
+  const link = e.target;
+  if (link.classList.contains('navigation__link')) {
+    const siblingsLinks = link
+      .closest('.navigation')
+      .querySelectorAll('.navigation__link');
+    const logo = link.closest('.navigation').querySelector('svg');
+    siblingsLinks.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+
+navigation.addEventListener('mouseover', menuLinksHover.bind(0.5));
+navigation.addEventListener('mouseout', menuLinksHover.bind(1));
