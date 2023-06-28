@@ -1,13 +1,14 @@
 /* Slider */
 
 .slider {
-  height: 50rem;
-  max-width: 100rem;
+  height: 60rem;
+  max-width: 120rem;
   margin: 0 auto;
-  overflow: hidden;
   position: relative;
 
   &__slide {
+    height: 60rem;
+    position: absolute;
     width: 100%;
 
     & > img {
@@ -16,4 +17,30 @@
       width: 100%;
     }
   }
+}
+
+.slider__btn {
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  border-radius: 50%;
+  color: var(--color-text-dark);
+  cursor: pointer;
+  height: 4.5rem;
+  position: absolute;
+  top: 50%;
+  width: 4.5rem;
+
+  & svg {
+    padding: 0.4rem;
+  }
+}
+
+.slider__btn--left {
+  left: 7%;
+  transform: translate(-50%, -50%);
+}
+
+.slider__btn--right {
+  right: 7%;
+  transform: translate(50%, -50%);
 }

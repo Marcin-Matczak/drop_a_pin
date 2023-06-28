@@ -146,3 +146,5 @@ const imageObserver = new IntersectionObserver(loadImage, {
 });
 
 hiqualityImages.forEach(image => imageObserver.observe(image));
+
+/* Slider */

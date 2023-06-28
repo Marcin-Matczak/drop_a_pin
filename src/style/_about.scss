@@ -41,20 +41,6 @@
   }
 }
 
-.show-right {
-  transform: translateX(-10rem);
-  opacity: 0;
-}
-
-.show-left {
-  transform: translateX(10rem);
-  opacity: 0;
-}
-
-.lazy-img {
-  filter: blur(15px);
-}
-
 figcaption {
   background-color: var(--color-text-dark);
   color: var(--color-bg-light);  
