@@ -1,18 +1,34 @@
-/* Elements */
+/* Elements -- navigation */
 
-const header = document.querySelector('.header');
-
-const buttonLearnMore = document.querySelector('.btn--learn-more');
-
-const sectionOne = document.querySelector('#section-1');
 const navigation = document.querySelector('.navigation');
 const navigationList = document.querySelector('.navigation__list');
 
+/* Elements -- header*/
+
+const header = document.querySelector('.header');
+const buttonLearnMore = document.querySelector('.btn--learn-more');
+
+/* Elements -- sections */
+
 const sections = document.querySelectorAll('.section');
+const sectionOne = document.querySelector('#section-1');
+
+/* Elements -- about */
+
+const aboutSection = document.querySelector('.about');
+const descriptions = document.querySelectorAll('.about__info p');
+
+/* Elements -- features*/
 
 const tabs = document.querySelectorAll('.btn--tab');
 const tabsContainer = document.querySelector('.features__tab-container');
 const tabsContent = document.querySelectorAll('.features__content');
+
+/* Elements -- gallery*/
+
+const slides = document.querySelectorAll('.slider__slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
 
 /* Smooth scrolling page navigation */
 
@@ -101,8 +117,6 @@ sections.forEach(function (section) {
 
 /* Show about`s descriptions */
 
-const aboutSection = document.querySelector('.about');
-const descriptions = document.querySelectorAll('.about__info p');
 const evenText = descriptions.item(1);
 
 const showAboutItems = function (entries, observer) {
@@ -148,3 +162,41 @@ const imageObserver = new IntersectionObserver(loadImage, {
 hiqualityImages.forEach(image => imageObserver.observe(image));
 
 /* Slider */
+
+let currentSlide = 0;
+const maxSlide = slides.length;
+
+const changeSlide = function (slide) {
+  slides.forEach(
+    (el, index) =>
+      (el.style.transform = `translateX(${100 * (index - slide)}%)`)
+  );
+};
+
+changeSlide(0);
+
+const nextSlide = function () {
+  if (currentSlide === maxSlide - 1) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+};
+
+const previousSlide = function () {
+  if (currentSlide === 0) {
+    currentSlide = maxSlide - 1;
+  } else {
+    currentSlide--;
+  }
+};
+
+btnRight.addEventListener('click', function () {
+  nextSlide();
+  changeSlide(currentSlide);
+});
+
+btnLeft.addEventListener('click', function () {
+  previousSlide();
+  changeSlide(currentSlide);
+});

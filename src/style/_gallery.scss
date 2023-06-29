@@ -5,10 +5,12 @@
   max-width: 120rem;
   margin: 0 auto;
   position: relative;
+  overflow: hidden;
 
   &__slide {
     height: 60rem;
     position: absolute;
+    transition: transform 0.8s;
     width: 100%;
 
     & > img {
@@ -20,7 +22,7 @@
 }
 
 .slider__btn {
-  background: rgba(255, 255, 255, 0.6);
+  background: inherit;
   border: none;
   border-radius: 50%;
   color: var(--color-text-dark);
@@ -31,7 +33,9 @@
   width: 4.5rem;
 
   & svg {
-    padding: 0.4rem;
+    color: rgba(255, 255, 255, 0.6);
+    fill: none;
+    stroke-width: 0.4rem;
   }
 }
 
