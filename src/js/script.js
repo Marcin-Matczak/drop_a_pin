@@ -164,72 +164,79 @@ hiqualityImages.forEach(image => imageObserver.observe(image));
 
 /* Slider */
 
-let currentSlide = 0;
-const maxSlide = slides.length;
+const slider = function () {
+  let currentSlide = 0;
+  const maxSlide = slides.length;
 
-const dotsCreator = function () {
-  slides.forEach((_, i) => {
-    dotsContainer.insertAdjacentHTML(
-      'beforeend',
-      `<button class="slider__dots__dot" data-slide="${i}"></button>`
+  const dotsCreator = function () {
+    slides.forEach((_, i) => {
+      dotsContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class="slider__dots__dot" data-slide="${i}"></button>`
+      );
+    });
+  };
+
+  const activateDot = function (slide) {
+    document
+      .querySelectorAll('.slider__dots__dot')
+      .forEach(el => el.classList.remove('slider__dots__dot--active'));
+
+    document
+      .querySelector(`.slider__dots__dot[data-slide="${slide}"]`)
+      .classList.add('slider__dots__dot--active');
+  };
+
+  const changeSlide = function (slide) {
+    slides.forEach(
+      (el, index) =>
+        (el.style.transform = `translateX(${100 * (index - slide)}%)`)
     );
+  };
+
+  const nextSlide = function () {
+    if (currentSlide === maxSlide - 1) {
+      currentSlide = 0;
+    } else {
+      currentSlide++;
+    }
+    activateDot(currentSlide);
+  };
+
+  const previousSlide = function () {
+    if (currentSlide === 0) {
+      currentSlide = maxSlide - 1;
+    } else {
+      currentSlide--;
+    }
+    activateDot(currentSlide);
+  };
+
+  const init = function () {
+    changeSlide(0);
+    dotsCreator();
+    activateDot(0);
+  };
+
+  init();
+
+  dotsContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('slider__dots__dot')) {
+      const { slide } = e.target.dataset;
+      changeSlide(slide);
+      activateDot(slide);
+    }
+  });
+
+  btnRight.addEventListener('click', function () {
+    nextSlide();
+    changeSlide(currentSlide);
+  });
+
+  btnLeft.addEventListener('click', function () {
+    previousSlide();
+    changeSlide(currentSlide);
   });
 };
 
-dotsCreator();
-
-const activateDot = function (slide) {
-  document
-    .querySelectorAll('.slider__dots__dot')
-    .forEach(el => el.classList.remove('slider__dots__dot--active'));
-
-  document
-    .querySelector(`.slider__dots__dot[data-slide="${slide}"]`)
-    .classList.add('slider__dots__dot--active');
-};
-
-const changeSlide = function (slide) {
-  slides.forEach(
-    (el, index) =>
-      (el.style.transform = `translateX(${100 * (index - slide)}%)`)
-  );
-};
-
-changeSlide(0);
-activateDot(0);
-
-const nextSlide = function () {
-  if (currentSlide === maxSlide - 1) {
-    currentSlide = 0;
-  } else {
-    currentSlide++;
-  }
-  activateDot(currentSlide);
-};
-
-const previousSlide = function () {
-  if (currentSlide === 0) {
-    currentSlide = maxSlide - 1;
-  } else {
-    currentSlide--;
-  }
-  activateDot(currentSlide);
-};
-
-dotsContainer.addEventListener('click', function (e) {
-  if (e.target.classList.contains('slider__dots__dot')) {
-    const { slide } = e.target.dataset;
-    changeSlide(slide);
-    activateDot(slide);
-  }
-});
-
-btnRight.addEventListener('click', function () {
-  nextSlide();
-  changeSlide(currentSlide);
-});
-
-btnLeft.addEventListener('click', function () {
-  previousSlide();
-  changeSlide(currentSlide);
-});
+slider();
