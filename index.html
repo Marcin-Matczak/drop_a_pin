@@ -306,7 +306,7 @@
             newsletter!
           </h3>
         </header>
-        <button class="btn">Subscribe</button>
+        <button class="btn btn--subscribe">Subscribe</button>
       </section>
     </main>
     <footer class="footer">
@@ -340,5 +340,17 @@
       </svg>
       <p class="footer__copyright">&copy; 2023 Marcin Matczak</p>
     </footer>
+    <div class="modal hidden">
+      <button class="btn--close-modal">&times;</button>
+      <h2 class="modal__header">
+        Subscribe our &nbsp;<span class="highlight">newsletter!</span>
+      </h2>
+      <form class="modal__form">
+        <label>Email</label>
+        <input type="email" />
+        <button class="btn">Send</button>
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
   </body>
 </html>
