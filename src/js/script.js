@@ -31,6 +31,13 @@ const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
 const dotsContainer = document.querySelector('.slider__dots');
 
+/* Elements -- newsletter */
+
+const subscribeBtn = document.querySelector('.btn--subscribe');
+const closeModalBtn = document.querySelector('.btn--close-modal');
+const overlay = document.querySelector('.overlay');
+const modal = document.querySelector('.modal');
+
 /* Smooth scrolling page navigation */
 
 buttonLearnMore.addEventListener('click', function () {
@@ -243,10 +250,6 @@ slider();
 
 /* Subscription */
 
-const subscribeBtn = document.querySelector('.btn--subscribe');
-const overlay = document.querySelector('.overlay');
-const modal = document.querySelector('.modal');
-
 const openModal = function (e) {
   e.preventDefault();
   modal.classList.remove('hidden');
@@ -259,6 +262,7 @@ const closeModal = function () {
 };
 
 subscribeBtn.addEventListener('click', openModal);
+closeModalBtn.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
