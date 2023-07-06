@@ -92,9 +92,12 @@ const navigationHeight = navigation.getBoundingClientRect().height;
 
 const stickyNavigation = function (entries) {
   const [entry] = entries;
+  console.log(entry);
   if (!entry.isIntersecting) navigation.classList.add('sticky');
   else navigation.classList.remove('sticky');
 };
+
+/* Sticky navigation -- header obsever*/
 
 const headerObserver = new IntersectionObserver(stickyNavigation, {
   root: null,
@@ -103,6 +106,18 @@ const headerObserver = new IntersectionObserver(stickyNavigation, {
 });
 
 headerObserver.observe(header);
+
+/* Sticky navigation -- map section obsever*/
+
+const mapSection = document.querySelector('#section-4');
+
+const mapObserver = new IntersectionObserver(stickyNavigation, {
+  root: null,
+  threshold: 1,
+  rootMargin: `${navigationHeight}px`,
+});
+
+mapObserver.observe(mapSection);
 
 /* Show sections */
 
@@ -269,3 +284,29 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+/* Drop a pin section */
+
+if (navigator.geolocation)
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      const { latitude } = position.coords;
+      const { longitude } = position.coords;
+      const coords = [latitude, longitude];
+
+      const map = L.map('map').setView(coords, 6);
+
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      L.marker(coords)
+        .addTo(map)
+        .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+        .openPopup();
+    },
+    function () {
+      alert('Could not get your position');
+    }
+  );

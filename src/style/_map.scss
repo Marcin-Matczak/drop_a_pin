@@ -13,12 +13,24 @@
   display: flex;
   flex-basis: 50rem;
   flex-direction: column;
+
+  &__header {
+    align-items: center;
+    color: var(--color-bg-dark);
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+
+    &__logo {
+      fill: var(--color-bg-dark);
+      margin-right: 2rem;
+    }
+  }
 }
 
 /* Drop a pin -- map*/
 
-.map {
-  background-color: var(--color-bg-dark);
+#map {
   flex: 1;
   height: 100%;
 }
