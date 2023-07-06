@@ -92,7 +92,6 @@ const navigationHeight = navigation.getBoundingClientRect().height;
 
 const stickyNavigation = function (entries) {
   const [entry] = entries;
-  console.log(entry);
   if (!entry.isIntersecting) navigation.classList.add('sticky');
   else navigation.classList.remove('sticky');
 };
@@ -301,10 +300,24 @@ if (navigator.geolocation)
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      L.marker(coords)
-        .addTo(map)
-        .bindPopup('A pretty CSS popup.<br> Easily customizable.')
-        .openPopup();
+      map.on('click', function (mapEvent) {
+        console.log(mapEvent);
+
+        const { lat, lng } = mapEvent.latlng;
+
+        L.marker([lat, lng])
+          .addTo(map)
+          .bindPopup(
+            L.popup({
+              maxWidth: 250,
+              minWidth: 100,
+              autoClose: false,
+              closeOnClick: false,
+            })
+          )
+          .setPopupContent('Hi there!')
+          .openPopup();
+      });
     },
     function () {
       alert('Could not get your position');
