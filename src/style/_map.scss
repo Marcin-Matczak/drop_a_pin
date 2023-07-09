@@ -28,6 +28,87 @@
   }
 }
 
+/* Drop a pin -- trip list */
+
+.places {
+  height: 77vh;
+  list-style: none;
+  padding: 2rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.places::-webkit-scrollbar {
+  width: 0;
+}
+
+.form {
+  background-color: var(--color-bg-dark);
+  border-radius: 5px;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  padding: 1.5rem;
+  transition: all 0.5s, transform 1ms;
+
+  &__label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  &__input {
+    background-color: var(--color-bg-light);
+    border-radius: 3px;
+    border: none;
+    font-family: inherit;
+    font-size: 1.4rem;
+    padding: 0.3rem 1.1rem;
+    transition: all 0.2s;
+    width: 100%;
+
+    &:focus {
+      background-color: #fff;
+      outline: none;
+    }
+  }
+
+  &__row {
+
+    &--hidden {
+      display: none;
+    }
+
+    &--title { 
+      display: grid;
+      grid-area: 1 / 1 / 2 / 3;
+    }
+
+    &--activity { 
+      grid-area: 2 / 1 / 3 / 2;
+     }
+
+    &--country { 
+      grid-area: 2 / 2 / 3 / 3;
+    }
+
+    &--shot { 
+      grid-area: 3 / 1 / 4 / 2;
+     }
+
+    &--distance { 
+      grid-area: 3 / 2 / 4 / 3;
+     }
+  }
+
+  &__btn {
+    display: none;
+  }
+}
+
 /* Drop a pin -- map*/
 
 #map {

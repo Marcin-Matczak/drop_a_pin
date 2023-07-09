@@ -19,36 +19,36 @@
   top: 50%;
   transform: translate(-50%, -50%);
   transition: all 0.5s;
-  z-index: 1000;
-}
+  z-index: 9999;
 
-.modal__header {
-  font-size: 3.25rem;
-  line-height: 1.5;
-  margin-bottom: 4.5rem;
-}
+  &__header {
+    font-size: 3.25rem;
+    line-height: 1.5;
+    margin-bottom: 4.5rem;
+  }
 
-.modal__form {
-  align-items: center;
-  display: grid;
-  gap: 2.5rem;
-  grid-template-columns: 1fr 2fr;
-  margin: 0 3rem;
-}
+  &__form {
+    align-items: center;
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr 2fr;
+    margin: 0 3rem;
 
-.modal__form label {
-  font-size: 1.7rem;
-  font-weight: 500;
-}
+    & label {
+      font-size: 1.7rem;
+      font-weight: 500;
+    }
 
-.modal__form input {
-  border-radius: 0.5rem;
-  font-size: 1.7rem;
-  padding: 1rem 1.5rem;
-}
+    & input {
+      border-radius: 0.5rem;
+      font-size: 1.7rem;
+      padding: 1rem 1.5rem;
+    }
 
-.modal__form button {
-  grid-column: 1 / span 2;
+    & button {
+      grid-column: 1 / span 2;
+    }
+  }
 }
 
 .btn--close-modal {
@@ -79,5 +79,5 @@
   top: 0;
   transition: all 0.5s;
   width: 100%;
-  z-index: 100;
+  z-index: 1000;
 }

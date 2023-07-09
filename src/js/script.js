@@ -1,44 +1,44 @@
-/* Elements -- navigation */
+// Elements -- navigation
 
 const navigation = document.querySelector('.navigation');
 const navigationList = document.querySelector('.navigation__list');
 
-/* Elements -- header*/
+// Elements -- header
 
 const header = document.querySelector('.header');
 const buttonLearnMore = document.querySelector('.btn--learn-more');
 
-/* Elements -- sections */
+// Elements -- sections
 
 const sections = document.querySelectorAll('.section');
 const sectionOne = document.querySelector('#section-1');
 
-/* Elements -- about */
+// Elements -- about
 
 const aboutSection = document.querySelector('.about');
 const descriptions = document.querySelectorAll('.about__info p');
 
-/* Elements -- features*/
+// Elements -- features
 
 const tabs = document.querySelectorAll('.btn--tab');
 const tabsContainer = document.querySelector('.features__tab-container');
 const tabsContent = document.querySelectorAll('.features__content');
 
-/* Elements -- gallery*/
+// Elements -- gallery
 
 const slides = document.querySelectorAll('.slider__slide');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
 const dotsContainer = document.querySelector('.slider__dots');
 
-/* Elements -- newsletter */
+// Elements -- newsletter
 
 const subscribeBtn = document.querySelector('.btn--subscribe');
 const closeModalBtn = document.querySelector('.btn--close-modal');
 const overlay = document.querySelector('.overlay');
 const modal = document.querySelector('.modal');
 
-/* Smooth scrolling page navigation */
+// Smooth scrolling page navigation
 
 buttonLearnMore.addEventListener('click', function () {
   sectionOne.scrollIntoView({ behavior: 'smooth' });
@@ -51,7 +51,7 @@ navigationList.addEventListener('click', function (e) {
   document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
 });
 
-/* Features tabs */
+// Features tabs
 
 tabsContainer.addEventListener('click', function (e) {
   tabs.forEach(tab => tab.classList.remove('btn--tab-active'));
@@ -67,7 +67,7 @@ tabsContainer.addEventListener('click', function (e) {
   article.classList.add('features__content--active');
 });
 
-/* Menu animation */
+// Menu animation
 
 const menuLinksHover = function (e) {
   const link = e.target;
@@ -86,7 +86,7 @@ const menuLinksHover = function (e) {
 navigation.addEventListener('mouseover', menuLinksHover.bind(0.5));
 navigation.addEventListener('mouseout', menuLinksHover.bind(1));
 
-/* Sticky navigation */
+// Sticky navigation
 
 const navigationHeight = navigation.getBoundingClientRect().height;
 
@@ -96,7 +96,7 @@ const stickyNavigation = function (entries) {
   else navigation.classList.remove('sticky');
 };
 
-/* Sticky navigation -- header obsever*/
+// Sticky navigation -- header obsever
 
 const headerObserver = new IntersectionObserver(stickyNavigation, {
   root: null,
@@ -106,7 +106,7 @@ const headerObserver = new IntersectionObserver(stickyNavigation, {
 
 headerObserver.observe(header);
 
-/* Sticky navigation -- map section obsever*/
+// Sticky navigation -- map section obsever
 
 const mapSection = document.querySelector('#section-4');
 
@@ -118,7 +118,7 @@ const mapObserver = new IntersectionObserver(stickyNavigation, {
 
 mapObserver.observe(mapSection);
 
-/* Show sections */
+// Show sections
 
 const showSection = function (entries, observer) {
   const [entry] = entries;
@@ -137,7 +137,7 @@ sections.forEach(function (section) {
   sectionObserver.observe(section);
 });
 
-/* Show about`s descriptions */
+// Show about`s descriptions
 
 const evenText = descriptions.item(1);
 
@@ -160,7 +160,7 @@ descriptions.forEach(function (description) {
   else description.classList.add('show-left');
 });
 
-/* Images loading optimization */
+// Images loading optimization
 
 const hiqualityImages = document.querySelectorAll('img[data-src]');
 
@@ -183,7 +183,7 @@ const imageObserver = new IntersectionObserver(loadImage, {
 
 hiqualityImages.forEach(image => imageObserver.observe(image));
 
-/* Slider */
+// Slider
 
 const slider = function () {
   let currentSlide = 0;
@@ -262,7 +262,7 @@ const slider = function () {
 
 slider();
 
-/* Subscription */
+// Subscription
 
 const openModal = function (e) {
   e.preventDefault();
@@ -284,7 +284,16 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-/* Drop a pin section */
+// Drop a pin section
+
+const form = document.querySelector('.form');
+const containerPlaces = document.querySelector('.places');
+const inputTitle = document.querySelector('.form__input--title');
+const inputActivity = document.querySelector('.form__input--activity');
+const inputShot = document.querySelector('.form__input--shot');
+const inputDistance = document.querySelector('.form__input--distance');
+
+let map, mapEvent;
 
 if (navigator.geolocation)
   navigator.geolocation.getCurrentPosition(
@@ -293,33 +302,45 @@ if (navigator.geolocation)
       const { longitude } = position.coords;
       const coords = [latitude, longitude];
 
-      const map = L.map('map').setView(coords, 6);
+      map = L.map('map').setView(coords, 6);
 
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      map.on('click', function (mapEvent) {
-        console.log(mapEvent);
-
-        const { lat, lng } = mapEvent.latlng;
-
-        L.marker([lat, lng])
-          .addTo(map)
-          .bindPopup(
-            L.popup({
-              maxWidth: 250,
-              minWidth: 100,
-              autoClose: false,
-              closeOnClick: false,
-            })
-          )
-          .setPopupContent('Hi there!')
-          .openPopup();
+      map.on('click', function (e) {
+        mapEvent = e;
+        form.classList.remove('hidden');
+        inputTitle.focus();
       });
     },
     function () {
       alert('Could not get your position');
     }
   );
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  inputTitle.value =
+    inputActivity.value =
+    inputShot.value =
+    inputDistance.value =
+      '';
+
+  const { lat, lng } = mapEvent.latlng;
+
+  L.marker([lat, lng])
+    .addTo(map)
+    .bindPopup(
+      L.popup({
+        maxWidth: 250,
+        minWidth: 100,
+        autoClose: false,
+        closeOnClick: false,
+      })
+    )
+    .setPopupContent('Hi there!')
+    .openPopup();
+});

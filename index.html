@@ -323,6 +323,45 @@
             </svg>
             <h2>MY PINS!</h2>
           </header>
+          <ul class="places">
+            <form class="form hidden">
+              <div class="form__row form__row--title">
+                <label class="form__label">Title</label>
+                <input 
+                class="form__input form__input--title" 
+                placeholder="Add description of your journey"/>
+              </div>
+              <div class="form__row form__row--activity">
+                <label class="form__label">Activity</label>
+                <input
+                  class="form__input form__input--activity"
+                  placeholder="activity"
+                />
+              </div>
+              <div class="form__row form__row--country">
+                <label class="form__label">Country</label>
+                <select class="form__input">
+                  <option value="running">Poland</option>
+                  <option value="cycling">Germany</option>
+                </select>
+              </div>
+              <div class="form__row form__row--shot">
+                <label class="form__label">Shot</label>
+                <input
+                  class="form__input form__input--shot"
+                  placeholder="photo"
+                />
+              </div>    
+              </div>
+              <div class="form__row form__row--distance">
+                <label class="form__label">Distance</label>
+                <input
+                  class="form__input form__input--distance"
+                  placeholder="km"
+                />
+              </div> 
+              <button class="form__btn">OK</button>
+            </form>
         </aside>
         <section id="map"></section>
       </section>
