@@ -2,35 +2,46 @@ import { select, classNames } from '../config';
 
 // Drop a pin
 
-let map, mapEvent;
+class Map {
+  #map;
+  #mapEvent;
+  constructor() {
+    this._getPosition();
+    select.form.addEventListener('submit', this._newWorkout.bind(this));
+  }
 
-export const pinDropper = function () {
-  if (navigator.geolocation)
-    navigator.geolocation.getCurrentPosition(
-      function (position) {
-        const { latitude } = position.coords;
-        const { longitude } = position.coords;
-        const coords = [latitude, longitude];
+  _getPosition() {
+    if (navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(
+        this._loadMap.bind(this),
+        function () {
+          alert('Could not get your position');
+        }
+      );
+  }
 
-        map = L.map('map').setView(coords, 6);
+  _loadMap(position) {
+    const { latitude } = position.coords;
+    const { longitude } = position.coords;
+    const coords = [latitude, longitude];
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        }).addTo(map);
+    this.#map = L.map('map').setView(coords, 6);
 
-        map.on('click', function (e) {
-          mapEvent = e;
-          select.form.classList.remove(classNames.hidden);
-          select.inputTitle.focus();
-        });
-      },
-      function () {
-        alert('Could not get your position');
-      }
-    );
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(this.#map);
 
-  select.form.addEventListener('submit', function (e) {
+    this.#map.on('click', this._showForm.bind(this));
+  }
+
+  _showForm(e) {
+    this.#mapEvent = e;
+    select.form.classList.remove(classNames.hidden);
+    select.inputTitle.focus();
+  }
+
+  _newWorkout(e) {
     e.preventDefault();
 
     select.inputTitle.value =
@@ -39,10 +50,10 @@ export const pinDropper = function () {
       select.inputDistance.value =
         '';
 
-    const { lat, lng } = mapEvent.latlng;
+    const { lat, lng } = this.#mapEvent.latlng;
 
     L.marker([lat, lng])
-      .addTo(map)
+      .addTo(this.#map)
       .bindPopup(
         L.popup({
           maxWidth: 250,
@@ -53,5 +64,7 @@ export const pinDropper = function () {
       )
       .setPopupContent('Hi there!')
       .openPopup();
-  });
-};
+  }
+}
+
+export default Map;
