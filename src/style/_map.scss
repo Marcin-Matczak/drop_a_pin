@@ -82,9 +82,9 @@
       display: none;
     }
 
-    &--title { 
+    &--description { 
       display: grid;
-      grid-area: 1 / 1 / 2 / 3;
+      grid-area: 3 / 1 / 4 / 3;
     }
 
     &--activity { 
@@ -95,12 +95,12 @@
       grid-area: 2 / 2 / 3 / 3;
     }
 
-    &--shot { 
-      grid-area: 3 / 1 / 4 / 2;
+    &--title { 
+      grid-area: 1 / 1 / 2 / 2;
      }
 
-    &--distance { 
-      grid-area: 3 / 2 / 4 / 3;
+    &--date { 
+      grid-area: 1 / 2 / 2 / 3;
      }
   }
 

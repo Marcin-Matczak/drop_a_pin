@@ -31,9 +31,10 @@ export const select = {
   form: document.querySelector('.form'),
   containerPlaces: document.querySelector('.places'),
   inputTitle: document.querySelector('.form__input--title'),
+  pinDate: document.querySelector('.form__row--date'),
   inputActivity: document.querySelector('.form__input--activity'),
-  inputShot: document.querySelector('.form__input--shot'),
-  inputDistance: document.querySelector('.form__input--distance'),
+  inputCountry: document.querySelector('.form__input--country'),
+  inputDescriprion: document.querySelector('.form__input--description'),
 
   // Newsletter
   subscribeBtn: document.querySelector('.btn--subscribe'),
@@ -41,7 +42,6 @@ export const select = {
   overlay: document.querySelector('.overlay'),
   modal: document.querySelector('.modal'),
 };
-
 // Class names
 
 export const classNames = {

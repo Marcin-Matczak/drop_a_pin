@@ -325,41 +325,40 @@
           </header>
           <ul class="places">
             <form class="form hidden">
-              <div class="form__row form__row--title">
+              <div class="form__row form__row--shot">
                 <label class="form__label">Title</label>
-                <input 
-                class="form__input form__input--title" 
-                placeholder="Add description of your journey"/>
-              </div>
+                <input
+                  class="form__input form__input--title"
+                  placeholder="Your short title"
+                />
+              </div>  
+              <div class="form__row form__row--date">
+                <label class="form__label">Date</label>
+              </div> 
               <div class="form__row form__row--activity">
                 <label class="form__label">Activity</label>
-                <input
-                  class="form__input form__input--activity"
-                  placeholder="activity"
-                />
+                <select class="form__input form__input--activity ">
+                  <option value="camping">Camping</option>
+                  <option value="running">Running</option>
+                  <option value="sightseeing">Sightseeing</option>
+                </select>
               </div>
               <div class="form__row form__row--country">
                 <label class="form__label">Country</label>
-                <select class="form__input">
-                  <option value="running">Poland</option>
-                  <option value="cycling">Germany</option>
+                <select class="form__input form__input--country">
+                  <option value="poland">Poland</option>
+                  <option value="germany">Germany</option>
+                  <option value="spain">Spain</option>
+                  <option value="england">England</option>
                 </select>
+              </div>  
               </div>
-              <div class="form__row form__row--shot">
-                <label class="form__label">Shot</label>
-                <input
-                  class="form__input form__input--shot"
-                  placeholder="photo"
-                />
-              </div>    
+              <div class="form__row form__row--description">
+                <label class="form__label">Discribe your memory</label>
+                <input 
+                class="form__input form__input--description" 
+                placeholder="Add description of your journey"/>
               </div>
-              <div class="form__row form__row--distance">
-                <label class="form__label">Distance</label>
-                <input
-                  class="form__input form__input--distance"
-                  placeholder="km"
-                />
-              </div> 
               <button class="form__btn">OK</button>
             </form>
         </aside>
