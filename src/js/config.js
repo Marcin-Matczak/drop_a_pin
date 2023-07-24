@@ -31,7 +31,7 @@ export const select = {
   form: document.querySelector('.form'),
   containerPlaces: document.querySelector('.places'),
   inputTitle: document.querySelector('.form__input--title'),
-  pinDate: document.querySelector('.form__row--date'),
+  inputDate: document.querySelector('.form__input--date'),
   inputActivity: document.querySelector('.form__input--activity'),
   inputCountry: document.querySelector('.form__input--country'),
   inputDescriprion: document.querySelector('.form__input--description'),

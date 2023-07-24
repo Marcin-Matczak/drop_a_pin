@@ -3,10 +3,10 @@ import { select, classNames } from '../config';
 // Drop a pin -- map
 
 class pinData {
-  date = new Date();
   id = (Date.now() + '').slice(-10);
-  constructor(title, activity, country, description, coords) {
+  constructor(title, date, activity, country, description, coords) {
     this.title = title;
+    this.date = date;
     this.activity = activity;
     this.country = country;
     this.description = description;
@@ -22,7 +22,7 @@ class Map {
   #pins = [];
   constructor() {
     this._getPosition();
-    select.form.addEventListener('submit', this._newWorkout.bind(this));
+    select.form.addEventListener('submit', this._newPin.bind(this));
   }
 
   _getPosition() {
@@ -56,16 +56,17 @@ class Map {
     select.inputTitle.focus();
   }
 
-  _newWorkout(e) {
+  _newPin(e) {
     e.preventDefault();
 
     const title = select.inputTitle.value;
+    const date = select.inputDate.value;
     const activity = select.inputActivity.value;
     const country = select.inputCountry.value;
     const description = select.inputDescriprion.value;
     const { lat, lng } = this.#mapEvent.latlng;
 
-    const newPin = new pinData(title, activity, country, description, [
+    const newPin = new pinData(title, date, activity, country, description, [
       lat,
       lng,
     ]);
@@ -82,7 +83,7 @@ class Map {
           closeOnClick: false,
         })
       )
-      .setPopupContent('Hi there!')
+      .setPopupContent(`${title}`)
       .openPopup();
 
     select.inputTitle.value = select.inputDescriprion.value = '';
