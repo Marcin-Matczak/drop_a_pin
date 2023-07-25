@@ -11,9 +11,20 @@ class pinData {
     this.country = country;
     this.description = description;
     this.coords = coords;
+    this._setPinCardTitle();
+  }
+
+  _setPinCardTitle() {
+    // prettier-ignore
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    this.pinCardTitle = `${this.activity[0].toUpperCase()}${this.activity.slice(
+      1
+    )} on `;
+    console.log(this.date);
   }
 }
-
+//${months[this.date.getMonth()]} ${this.date.getDate()}
 // Drop a pin -- map
 
 class Map {
@@ -42,7 +53,7 @@ class Map {
 
     this.#map = L.map('map').setView(coords, 6);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map);
@@ -54,6 +65,13 @@ class Map {
     this.#mapEvent = e;
     select.form.classList.remove(classNames.hidden);
     select.inputTitle.focus();
+  }
+
+  _hideForm() {
+    select.inputTitle.value = select.inputDescriprion.value = '';
+    select.form.style.display = 'none';
+    select.form.classList.add(classNames.hidden);
+    setTimeout(() => (select.form.style.display = 'grid'), 1000);
   }
 
   _newPin(e) {
@@ -86,7 +104,25 @@ class Map {
       .setPopupContent(`${title}`)
       .openPopup();
 
-    select.inputTitle.value = select.inputDescriprion.value = '';
+    this._renderPin(newPin);
+
+    this._hideForm();
+  }
+
+  _renderPin(newPin) {
+    const html = `
+      <li class="place place--running" data-id="${newPin.id}">
+        <h2 class="place__title">${newPin.pinCardTitle}</h2>
+        <div class="place__details">
+          <span class="place__icon">🏃‍♂️</span>
+          <span class="place__value">${newPin.country}</span>
+          <span class="place__value">${newPin.title}</span>
+          <span class="place__unit">${newPin.description}</span>
+        </div>
+      </li>  
+    `;
+
+    select.form.insertAdjacentHTML('afterend', html);
   }
 }
 
